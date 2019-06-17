@@ -100,5 +100,11 @@ module.exports = function () {
         `'${bravePrefix}app/scripts/lib/backend-metametrics'`
       )
     )
+    .pipe(
+      replace(
+        /\'(.*)\/app-header\.component\'/gm,
+        `'${bravePrefix}ui/app/components/app/app-header/app-header.component'`
+      )
+    )
     .pipe(gulp.dest(file => file.base))
 }
