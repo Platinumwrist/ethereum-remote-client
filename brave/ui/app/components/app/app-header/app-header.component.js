@@ -2,7 +2,9 @@ const NetworkIndicator = require('../../../../../../ui/app/components/app/networ
 
 import React from 'react'
 import classnames from 'classnames'
-
+import {
+  CONNECT_HARDWARE_ROUTE
+} from '../../../../../../ui/app/helpers/constants/routes'
 import AppHeader from '../../../../../../ui/app/components/app/app-header/app-header.component'
 import BraveWalletDropdown from '../dropdowns/components/brave-wallet-dropdown/brave-wallet-dropdown.component'
 
@@ -34,12 +36,25 @@ module.exports = class BraveAppHeader extends AppHeader {
     ]
   }
 
+  onHardwareConnect = () => {
+    const { history } = this.props
+
+    this.setState({ activeDropdown: '' })
+    history.push(CONNECT_HARDWARE_ROUTE)
+  }
+
   get connectItems () {
     return [
-      (<div>{'Test item 1'}</div>),
-      (<div>{'Test item 2'}</div>),
-      (<div>{'Test item 3'}</div>),
-      (<div>{'Test item 4'}</div>)
+      (
+        <div onClick={this.onHardwareConnect} style={{ textAlign: 'center', padding: '15px 20px 10px 20px' }}>
+          <img style={{ width: '95px' }} src={'images/ledger-logo.svg'} />
+        </div>
+      ),
+      (
+        <div onClick={this.onHardwareConnect} style={{ textAlign: 'center', padding: '15px 20px 10px 20px' }}>
+          <img style={{ width: '95px' }} src={'images/trezor-logo.svg'} />
+        </div>
+      )
     ]
   }
 
@@ -62,6 +77,7 @@ module.exports = class BraveAppHeader extends AppHeader {
 
     return (
       <div
+        style={{ zIndex: '9999' }}
         className={classnames('app-header', { 'app-header--back-drop': isUnlocked })}>
         <div className="app-header__contents">
           <div className="app-header__logo-container">

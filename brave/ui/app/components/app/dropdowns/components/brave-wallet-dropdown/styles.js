@@ -30,10 +30,11 @@ module.exports = {
     position: 'absolute',
     top: '5px',
     borderRadius: '5px',
-    boxShadow: '2px 2px 2px 2px gray'
+    boxShadow: 'grey 0px 0px 2px 1px',
+    zIndex: '9999'
   },
 
   dropdownItem: {
-    borderBottom: '1px solid gray'
+    borderBottom: '1px solid #dedede'
   }
 }
