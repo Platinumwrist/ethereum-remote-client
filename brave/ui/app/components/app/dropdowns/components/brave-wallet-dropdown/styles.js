@@ -26,7 +26,7 @@ module.exports = {
 
   dropdownContainer: {
     background: '#fff',
-    minWidth: '200px',
+    minWidth: '275px',
     position: 'absolute',
     top: '5px',
     borderRadius: '5px',
