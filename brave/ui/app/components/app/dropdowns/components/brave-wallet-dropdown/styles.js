@@ -2,11 +2,11 @@ module.exports = {
   container: {
     general: {
       marginRight: '5px',
-      padding: '5px 7px',
-      borderRadius: '10px'
+      padding: '5px 9px',
+      borderRadius: '8px'
     },
     active: {
-      background: 'gray'
+      background: 'rgb(94, 97, 117)'
     },
     inactive: {
       background: 'inherit'
@@ -15,6 +15,7 @@ module.exports = {
 
   title: {
     general: {
+      fontSize: '14px',
       fontWeight: '500',
       letterSpacing: '0.5px'
     },
@@ -36,5 +37,24 @@ module.exports = {
 
   dropdownItem: {
     borderBottom: '1px solid #dedede'
+  },
+
+  caratContainer: {
+    display: 'inline-block',
+    padding: '5px',
+    position: 'relative',
+    top: '-1px'
+  },
+
+  plusContainer: {
+    display: 'inline-block',
+    padding: '5px',
+    position: 'relative',
+    top: '2px'
+  },
+
+  leftPadding: {
+    width: '7px',
+    display: 'inline-block'
   }
 }

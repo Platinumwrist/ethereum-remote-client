@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react'
+import CaratDownIcon from './assets/carat-down'
+import PlusIcon from './assets/plus'
 import styles from './styles'
 
 module.exports = class BraveWalletDropdown extends PureComponent {
@@ -86,14 +88,14 @@ module.exports = class BraveWalletDropdown extends PureComponent {
           >
             {
               connect
-              ? <span style={{ fontWeight: 'bold', color: '#a6a6a6', fontSize: '18px', marginRight: '5px' }}>+</span>
-              : null
+              ? <div style={styles.plusContainer}>
+                  <PlusIcon />
+                </div>
+              : <div style={styles.leftPadding}></div>
             }
             {title}
-            <div style={{ display: 'inline-block', width: '12px', marginLeft: '7px', color: '#a6a6a6', position: 'relative', top: '1px' }}>
-              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>
-                <path d='M16 19.047l11.04-9.2a1.5 1.5 0 0 1 1.92 2.305l-12 10a1.5 1.5 0 0 1-1.92 0l-12-10a1.5 1.5 0 1 1 1.92-2.304l11.04 9.2z' />
-              </svg>
+            <div style={styles.caratContainer}>
+              <CaratDownIcon />
             </div>
           </span>
         </div>

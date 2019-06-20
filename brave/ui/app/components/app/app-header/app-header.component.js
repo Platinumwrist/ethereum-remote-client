@@ -27,6 +27,18 @@ module.exports = class BraveAppHeader extends AppHeader {
     }
   }
 
+  get styles () {
+    return {
+      connectItem: {
+        textAlign: 'center',
+        padding: '15px 20px 10px 20px'
+      },
+      connectImg: {
+        width: '95px'
+      }
+    }
+  }
+
   get browserItems () {
     return [
       (<div>{'Test item 1'}</div>),
@@ -46,13 +58,13 @@ module.exports = class BraveAppHeader extends AppHeader {
   get connectItems () {
     return [
       (
-        <div onClick={this.onHardwareConnect} style={{ textAlign: 'center', padding: '15px 20px 10px 20px' }}>
-          <img style={{ width: '95px' }} src={'images/ledger-logo.svg'} />
+        <div onClick={this.onHardwareConnect} style={this.styles.connectItem}>
+          <img style={this.styles.connectImg} src={'images/ledger-logo.svg'} />
         </div>
       ),
       (
-        <div onClick={this.onHardwareConnect} style={{ textAlign: 'center', padding: '15px 20px 10px 20px' }}>
-          <img style={{ width: '95px' }} src={'images/trezor-logo.svg'} />
+        <div onClick={this.onHardwareConnect} style={this.styles.connectItem}>
+          <img style={this.styles.connectImg} src={'images/trezor-logo.svg'} />
         </div>
       )
     ]
@@ -70,7 +82,6 @@ module.exports = class BraveAppHeader extends AppHeader {
     const {
       network,
       provider,
-      isUnlocked,
       hideNetworkIndicator,
       disabled,
     } = this.props    
@@ -78,11 +89,11 @@ module.exports = class BraveAppHeader extends AppHeader {
     return (
       <div
         style={{ zIndex: '9999' }}
-        className={classnames('app-header', { 'app-header--back-drop': isUnlocked })}>
+        className={classnames('app-header')}>
         <div className="app-header__contents">
           <div className="app-header__logo-container">
             <BraveWalletDropdown
-              title={'Browser'}
+              title={'Browser Wallet'}
               children={this.browserItems}
               active={this.state.activeDropdown === 'browser'}
               onSetActive={this.handleDropdownClick.bind(this, 'browser')}
@@ -108,7 +119,7 @@ module.exports = class BraveAppHeader extends AppHeader {
                 </div>
               )
             }
-            { this.renderAccountMenu() }
+            {this.renderAccountMenu()}
           </div>
         </div>
       </div>
