@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { renderToString } from 'react-dom/server'
 import CaratDownIcon from './assets/carat-down'
 import PlusIcon from './assets/plus'
 import styles from './styles'
@@ -18,28 +19,36 @@ module.exports = class BraveWalletDropdown extends PureComponent {
     }
   }
 
-  handleClick = () => {
+  handleClick = (event) => {
     const { onSetActive } = this.props
+    const target = event.target
 
-    if (onSetActive) {
+    if (onSetActive && target) {
       onSetActive()
+    } else {
+      return
     }
+
+    const rect = target.getBoundingClientRect()
+    const droppo = document.querySelector('.network-droppo')
+    const left = Math.ceil(rect.left) + 150
+
+    droppo.innerHTML = renderToString(this.getDropdown(`-${left}px`))
   }
 
-  getDropdown = () => {
+  getDropdown = (left) => {
     const { children } = this.props
 
     if (!children || children.length === 0) {
       return null
     }
 
-    const display = this.state.dropdownOpen ? 'block' : 'none'
-
     return (
       <div 
+        className="cur-dropdown-container"
         style={
           {
-            display,
+            left,
             ...styles.dropdownContainer
           }
         }
@@ -68,40 +77,35 @@ module.exports = class BraveWalletDropdown extends PureComponent {
     const activeKey = active ? 'active' : 'inactive'
 
     return (
-      <div>
-        <div
-          onClick={this.handleClick}
+      <div
+        onClick={(e) => {this.handleClick(e)}}
+        style={
+          {
+            ...styles.container.general,
+            ...styles.container[activeKey]
+          }
+        }
+      >
+        <span
           style={
-            {
-              ...styles.container.general,
-              ...styles.container[activeKey]
-            }
+              {
+              ...styles.title.general,
+              ...styles.title[activeKey]
+              }
           }
         >
-          <span
-            style={
-                {
-                ...styles.title.general,
-                ...styles.title[activeKey]
-                }
-            }
-          >
-            {
-              connect
-              ? <div style={styles.plusContainer}>
-                  <PlusIcon />
-                </div>
-              : <div style={styles.leftPadding}></div>
-            }
-            {title}
-            <div style={styles.caratContainer}>
-              <CaratDownIcon />
-            </div>
-          </span>
-        </div>
-        <div style={{ position: 'relative' }}>
-          {this.getDropdown()}
-        </div>
+          {
+            connect
+            ? <div style={styles.plusContainer}>
+                <PlusIcon />
+              </div>
+            : <div style={styles.leftPadding}></div>
+          }
+          {title}
+          <div style={styles.caratContainer}>
+            <CaratDownIcon />
+          </div>
+        </span>
       </div>
     )
   }

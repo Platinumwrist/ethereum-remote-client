@@ -19,10 +19,15 @@ module.exports = class BraveAppHeader extends AppHeader {
 
   componentDidMount () {
     window.document.onclick = (e) => {
-      if (!document
-          .querySelector('.app-header__logo-container')
-          .contains(e.target)) {
-        this.setState({ activeDropdown: '' })
+      const appContainer = document.querySelector('.app-header__logo-container')
+
+      if (!appContainer.contains(e.target)) {
+        const currentDropdown = document.querySelector('.cur-dropdown-container')
+
+        if (!currentDropdown.contains(e.target)) {
+          currentDropdown.remove()
+          this.setState({ activeDropdown: '' })
+        }
       }
     }
   }
@@ -84,12 +89,11 @@ module.exports = class BraveAppHeader extends AppHeader {
       provider,
       hideNetworkIndicator,
       disabled,
+      isUnlocked
     } = this.props    
 
     return (
-      <div
-        style={{ zIndex: '9999' }}
-        className={classnames('app-header')}>
+      <div className={classnames('app-header', { 'app-header--back-drop': isUnlocked })}>
         <div className="app-header__contents">
           <div className="app-header__logo-container">
             <BraveWalletDropdown

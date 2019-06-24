@@ -29,10 +29,9 @@ module.exports = {
     background: '#fff',
     minWidth: '275px',
     position: 'absolute',
-    top: '5px',
+    top: '15px',
     borderRadius: '5px',
-    boxShadow: 'grey 0px 0px 2px 1px',
-    zIndex: '9999'
+    boxShadow: 'grey 0px 0px 2px 1px'
   },
 
   dropdownItem: {
