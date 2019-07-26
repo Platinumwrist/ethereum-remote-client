@@ -1,6 +1,9 @@
 ---
 name: Bug Report
 about: Using MetaMask, but it's not working as you expect?
+title: ''
+labels: ''
+assignees: ''
 
 ---
 

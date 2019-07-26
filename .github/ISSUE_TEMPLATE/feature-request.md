@@ -1,6 +1,9 @@
 ---
 name: Feature Request
 about: Looking for a feature that doesn't exist? Let us know!
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
